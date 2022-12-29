@@ -13,24 +13,22 @@ func longestValidParentheses(s string) int {
 
 	maxVal := 0
 	for i := 1; i < size; i++ {
-		// 如果当前位置的字符是 ) 才能计算
 		if s[i] == ')' {
 			if s[i-1] == '(' {
 				dp[i] = 2
 				if i-2 >= 0 {
 					dp[i] = dp[i] + dp[i-2]
 				}
-			} else if dp[i-1] > 0 { // 如果i-1位置之前的最长子串是有效的
+			} else if dp[i-1] > 0 {
 				if (i-dp[i-1]-1) >= 0 && s[i-dp[i-1]-1] == '(' {
 					dp[i] = dp[i-1] + 2
 					if i-dp[i-1]-2 >= 0 {
-						dp[i] = dp[i] + dp[i-dp[i-1]-2]
+						dp[i] = dp[i-dp[i-1]-2] + dp[i]
 					}
 				}
 			}
 		}
 		maxVal = max(maxVal, dp[i])
 	}
-
 	return maxVal
 }
