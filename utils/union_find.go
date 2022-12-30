@@ -1,4 +1,4 @@
-package utils
+package main
 
 type UnionFind struct {
 	Count  int
