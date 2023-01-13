@@ -60,9 +60,7 @@ func threeSum2(nums []int) [][]int {
 		if i > 0 && nums[i] == nums[i-1] {
 			continue
 		}
-		target := -1 * nums[i]
-		left := i + 1
-		right := len(nums) - 1
+		target, left, right := -1*nums[i], i+1, len(nums)-1
 		for left < right {
 			if nums[left]+nums[right] == target {
 				ans = append(ans, []int{nums[i], nums[left], nums[right]})
